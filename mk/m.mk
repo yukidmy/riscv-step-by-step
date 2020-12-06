@@ -5,7 +5,7 @@ run:
 	qemu-system-riscv32 -nographic -machine sifive_u -kernel $(target)
 
 # `run-gdb` and
-# `riscv32-unknown-elf-gdb -ex "target remote localhost:1234"` from another terminal.
+# `riscv32-unknown-linux-gnu-gdb -ex "target remote localhost:1234"` from another terminal.
 run-gdb:
 	qemu-system-riscv32 -nographic -machine sifive_u -kernel $(target) -s -S
 

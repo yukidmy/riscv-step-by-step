@@ -1,8 +1,8 @@
 MAKEFILE_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 
-CC = riscv32-unknown-elf-gcc
-LD = riscv32-unknown-elf-gcc
-OBJCOPY = riscv32-unknown-elf-objcopy
+CC = riscv32-unknown-linux-gnu-gcc
+LD = riscv32-unknown-linux-gnu-gcc
+OBJCOPY = riscv32-unknown-linux-gnu-objcopy
 
 CFLAGS = -mcmodel=medany -march=rv32imac -mabi=ilp32 \
 	     -Wall -Wextra -Wshadow -Werror -ffunction-sections -fdata-sections -Os

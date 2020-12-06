@@ -65,6 +65,9 @@ $ sudo make install
 $ export PATH=/opt/rv32gc/bin:$PATH
 ```
 
+#### NOTE: 2020-12-06
+公式にしたがってビルドするとコマンドは `riscv32-unknown-linux-gnu-*` の形式になる。
+
 ### riscv-qemuセットアップ
 QEMU も RV32 のみを使用するため32ビットのビルドのみを行います.
 ```bash
@@ -90,6 +93,18 @@ $ cd riscv-probe
 $ make CROSS_COMPILE=riscv32-unknown-elf-
 ```
 
+#### NOTE: 2020-12-06
+最後のコマンドのみ以下に変更した。
+```bash
+$ make CROSS_COMPILE=riscv32-unknown-linux-gnu-
+```
+
+Multiple definition error が出たため、`libfemto/include/arch/riscv/trap.h` を編集して以下のように `extern` を追加する必要があった。
+```c
+extern const char* riscv_excp_names[16];
+extern const char* riscv_intr_names[16];
+```
+
 ## Hello World!
 ```bash
 $ cd /path/to/dir/riscv-step-by-step
@@ -101,3 +116,6 @@ Hello RISC-V M-Mode.
 "Hello RISC-V M-Mode." が表示されればこのステップは目標達成となります.
 なお make run で開始したプログラムは別の terminal から make stop もしくは
 killall qemu-system-riscv32 として終了させます.
+
+#### NOTE: 2020-12-06
+riscv-probe のセットアップと同様に、makeコマンドも `riscv32-unknown-linux-gnu-*` を使うように書き換えた。
